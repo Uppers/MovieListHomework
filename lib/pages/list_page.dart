@@ -1,13 +1,50 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:movie_api/components/clickable_film_choice.dart';
+import 'package:movie_api/models/movie.dart';
+import 'package:movie_api/pages/film_page.dart';
 
-class ListPage extends StatelessWidget {
-  ListPage({
-    @required this.pageTitle,
-    @required this.filmTiles,
-  });
+import '../movie_requests.dart';
 
-  final String pageTitle;
-  final Function filmTiles;
+class ListPage extends StatefulWidget {
+  @override
+  _ListPageState createState() => _ListPageState();
+}
+
+class _ListPageState extends State<ListPage> {
+  final List<Movie> movies = <Movie>[];
+  String pageTitle;
+
+  @override
+  void initState() {
+    createMovieData();
+    pageTitle = 'Choose a Film';
+    super.initState();
+  }
+
+  void createMovieData() async {
+    final String md = await MovieAPIData().requestMovieAPIData();
+    setState(() {
+      final List<Movie> data = jsonDecode(md)['data']['movies']
+          .map<Movie>((Map<String, dynamic> json) => Movie.fromJson(json))
+          .toList();
+      print(data);
+      movies.addAll(data);
+    });
+  }
+
+  void setMovieState(int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (context) => FilmPage(
+          movie: movies[index],
+        ),
+        fullscreenDialog: true,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +52,25 @@ class ListPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(pageTitle),
       ),
-      body: ListView(
-        children: filmTiles(),
+      body: ListView.builder(
+        itemCount: movies.length,
+        itemBuilder: (BuildContext, int i) {
+          final Movie movie = movies[i];
+          return ClickableFilmChoice(
+            onTouch: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => FilmPage(
+                    movie: movie,
+                  ),
+                  fullscreenDialog: true,
+                ),
+              );
+            },
+            sanitisedInfo: movie,
+          );
+        },
       ),
     );
   }

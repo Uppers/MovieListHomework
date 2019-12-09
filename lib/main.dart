@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/front_page.dart';
+import 'pages/list_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MOVIE LISTER',
-      home: FrontPage(),
+      home: ListPage(),
     );
   }
 }

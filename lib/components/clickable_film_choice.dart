@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'movie_information.dart';
+import 'package:movie_api/models/movie.dart';
 
 class ClickableFilmChoice extends StatelessWidget {
   const ClickableFilmChoice({
     Key key,
     @required this.sanitisedInfo,
-    @required this.movieIndex,
     @required this.onTouch,
   }) : super(key: key);
 
-  final MovieInformation sanitisedInfo;
-  final int movieIndex;
+  final Movie sanitisedInfo;
   final Function onTouch;
 
   @override
@@ -18,10 +16,7 @@ class ClickableFilmChoice extends StatelessWidget {
     return RaisedButton(
       child: Text(sanitisedInfo.title),
       color: Colors.lightBlueAccent,
-      onPressed: () {
-//        print(movieIndex);
-        onTouch(movieIndex);
-      },
+      onPressed: onTouch,
     );
   }
 }
