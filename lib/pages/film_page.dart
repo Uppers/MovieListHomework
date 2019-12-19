@@ -15,8 +15,11 @@ class FilmPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(movie.title),
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
+          Text('Released: ${movie.year}'),
+          Text('Rating ${movie.rating}'),
+//          Text('')
           Text(movie.description),
           Image.network(movie.mediumCoverImage)
         ],

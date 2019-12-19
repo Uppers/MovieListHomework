@@ -23,7 +23,7 @@ abstract class Movie implements Built<Movie, MovieBuilder> {
   double get rating;
 
   @nullable
-  int get length;
+  int get runtime;
 
   @BuiltValueField(wireName: 'description_full')
   String get description;

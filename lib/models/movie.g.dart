@@ -35,10 +35,10 @@ class _$MovieSerializer implements StructuredSerializer<Movie> {
       serializers.serialize(object.mediumCoverImage,
           specifiedType: const FullType(String)),
     ];
-    if (object.length != null) {
+    if (object.runtime != null) {
       result
-        ..add('length')
-        ..add(serializers.serialize(object.length,
+        ..add('runtime')
+        ..add(serializers.serialize(object.runtime,
             specifiedType: const FullType(int)));
     }
     return result;
@@ -71,8 +71,8 @@ class _$MovieSerializer implements StructuredSerializer<Movie> {
           result.rating = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
-        case 'length':
-          result.length = serializers.deserialize(value,
+        case 'runtime':
+          result.runtime = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
         case 'description_full':
@@ -100,7 +100,7 @@ class _$Movie extends Movie {
   @override
   final double rating;
   @override
-  final int length;
+  final int runtime;
   @override
   final String description;
   @override
@@ -114,7 +114,7 @@ class _$Movie extends Movie {
       this.title,
       this.year,
       this.rating,
-      this.length,
+      this.runtime,
       this.description,
       this.mediumCoverImage})
       : super._() {
@@ -153,7 +153,7 @@ class _$Movie extends Movie {
         title == other.title &&
         year == other.year &&
         rating == other.rating &&
-        length == other.length &&
+        runtime == other.runtime &&
         description == other.description &&
         mediumCoverImage == other.mediumCoverImage;
   }
@@ -167,7 +167,7 @@ class _$Movie extends Movie {
                     $jc($jc($jc(0, id.hashCode), title.hashCode),
                         year.hashCode),
                     rating.hashCode),
-                length.hashCode),
+                runtime.hashCode),
             description.hashCode),
         mediumCoverImage.hashCode));
   }
@@ -179,7 +179,7 @@ class _$Movie extends Movie {
           ..add('title', title)
           ..add('year', year)
           ..add('rating', rating)
-          ..add('length', length)
+          ..add('runtime', runtime)
           ..add('description', description)
           ..add('mediumCoverImage', mediumCoverImage))
         .toString();
@@ -205,9 +205,9 @@ class MovieBuilder implements Builder<Movie, MovieBuilder> {
   double get rating => _$this._rating;
   set rating(double rating) => _$this._rating = rating;
 
-  int _length;
-  int get length => _$this._length;
-  set length(int length) => _$this._length = length;
+  int _runtime;
+  int get runtime => _$this._runtime;
+  set runtime(int runtime) => _$this._runtime = runtime;
 
   String _description;
   String get description => _$this._description;
@@ -226,7 +226,7 @@ class MovieBuilder implements Builder<Movie, MovieBuilder> {
       _title = _$v.title;
       _year = _$v.year;
       _rating = _$v.rating;
-      _length = _$v.length;
+      _runtime = _$v.runtime;
       _description = _$v.description;
       _mediumCoverImage = _$v.mediumCoverImage;
       _$v = null;
@@ -255,7 +255,7 @@ class MovieBuilder implements Builder<Movie, MovieBuilder> {
             title: title,
             year: year,
             rating: rating,
-            length: length,
+            runtime: runtime,
             description: description,
             mediumCoverImage: mediumCoverImage);
     replace(_$result);
