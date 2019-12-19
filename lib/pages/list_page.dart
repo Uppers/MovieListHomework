@@ -23,12 +23,13 @@ class _ListPageState extends State<ListPage> {
     super.initState();
   }
 
-  void createMovieData() async {
+  Future<void> createMovieData() async {
     final String md = await MovieAPIData().requestMovieAPIData();
     setState(() {
-      final List<Movie> data = jsonDecode(md)['data']['movies']
-          .map<Movie>((Map<String, dynamic> json) => Movie.fromJson(json))
-          .toList();
+      final List<Movie> data =
+          List<Map<String, dynamic>>.from(jsonDecode(md)['data']['movies'])
+              .map<Movie>((Map<String, dynamic> json) => Movie.fromJson(json))
+              .toList();
       print(data);
       movies.addAll(data);
     });
@@ -38,7 +39,7 @@ class _ListPageState extends State<ListPage> {
     Navigator.push(
       context,
       MaterialPageRoute<void>(
-        builder: (context) => FilmPage(
+        builder: (BuildContext context) => FilmPage(
           movie: movies[index],
         ),
         fullscreenDialog: true,
@@ -54,14 +55,14 @@ class _ListPageState extends State<ListPage> {
       ),
       body: ListView.builder(
         itemCount: movies.length,
-        itemBuilder: (BuildContext, int i) {
+        itemBuilder: (BuildContext context, int i) {
           final Movie movie = movies[i];
           return ClickableFilmChoice(
             onTouch: () {
               Navigator.push(
                 context,
                 MaterialPageRoute<void>(
-                  builder: (context) => FilmPage(
+                  builder: (BuildContext context) => FilmPage(
                     movie: movie,
                   ),
                   fullscreenDialog: true,
