@@ -2,7 +2,7 @@ library movie;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:movie_api/models/serializers.dart';
+import 'package:movie_api/src/models/serializers.dart';
 
 part 'movie.g.dart';
 

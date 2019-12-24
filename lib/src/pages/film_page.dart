@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_api/models/movie.dart';
+import 'package:movie_api/src/models/movie.dart';
 
 class FilmPage extends StatelessWidget {
   const FilmPage({

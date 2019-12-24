@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_api/models/movie.dart';
+import 'package:movie_api/src/models/movie.dart';
 
 class ClickableFilmChoice extends StatelessWidget {
   const ClickableFilmChoice({
@@ -14,20 +14,23 @@ class ClickableFilmChoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(30.00, 10.00, 30.00, 0.00),
+      margin: const EdgeInsets.fromLTRB(32.00, 8.00, 32.00, 0.00),
       child: RaisedButton(
         child: Row(
           children: <Widget>[
             Expanded(
               flex: 15,
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(sanitisedInfo.mediumCoverImage),
+              child: Container(
+                alignment: AlignmentDirectional.centerStart,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(sanitisedInfo.mediumCoverImage),
+                ),
               ),
             ),
             Expanded(
               flex: 85,
               child: Padding(
-                padding: const EdgeInsets.only(right: 10.0),
+                padding: const EdgeInsets.only(right: 8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
